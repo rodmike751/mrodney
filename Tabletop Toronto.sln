@@ -1,22 +1,292 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Tabletop Toronto", "Tabletop Toronto\Tabletop Toronto.vbproj", "{97CA5A97-1C3B-44CD-AC8C-D13101CFAF42}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{97CA5A97-1C3B-44CD-AC8C-D13101CFAF42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97CA5A97-1C3B-44CD-AC8C-D13101CFAF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97CA5A97-1C3B-44CD-AC8C-D13101CFAF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97CA5A97-1C3B-44CD-AC8C-D13101CFAF42}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-EndGlobal
+Public Class frmTabletop
+   
+    Private Sub cmdDisplay_Click(sender As Object, e As EventArgs) Handles cmdDisplay.Click
+        ' declaring variables
+        Dim tickettype As String
+        Dim accesstype As String
+        Dim lunch As String
+        Dim options As String
+        Dim optiontotal As Integer
+        Dim total As Integer
+        Dim amount As Integer
+        Dim summary As String
+        Dim discount As Decimal
+        
+        ' codes
+        If cboTicket.Text = String.Empty Then
+            MessageBox.Show("Choose Ticket Type")
+        End If
+        If cboAccess.Text = String.Empty Then
+            MessageBox.Show("Choose Access Type")
+        End If
+        If cboLunch.Text = String.Empty Then
+            MessageBox.Show("Please choose a Yes or No")
+        End If
+
+        ' codes for saturday with BGH
+        If cboTicket.Text = "Saturday Only" And cboAccess.Text = "Board game hall" And cboLunch.Text = "Yes" Then
+            amount = 25
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        ElseIf cboTicket.Text = "Saturday Only" And cboAccess.Text = "Board game hall" And cboLunch.Text = "No" Then
+            amount = 20
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        End If
+
+        ' saturday with RPH
+        If cboTicket.Text = "Saturday Only" And cboAccess.Text = "Roleplaying hall" And cboLunch.Text = "Yes" Then
+            amount = 29
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        ElseIf cboTicket.Text = "Saturday Only" And cboAccess.Text = "Roleplaying hall" And cboLunch.Text = "No" Then
+            amount = 24
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        End If
+
+        ' saturday with AAA
+        If cboTicket.Text = "Saturday Only" And cboAccess.Text = "All areas pass" And cboLunch.Text = "Yes" Then
+            amount = 37
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        ElseIf cboTicket.Text = "Saturday Only" And cboAccess.Text = "All areas pass" And cboLunch.Text = "No" Then
+            amount = 32
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        End If
+
+        ' sunday with BGH
+        If cboTicket.Text = "Sunday Only" And cboAccess.Text = "Board game hall" And cboLunch.Text = "Yes" Then
+            amount = 19
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        ElseIf cboTicket.Text = "Sunday Only" And cboAccess.Text = "Board game hall" And cboLunch.Text = "No" Then
+            amount = 14
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        End If
+
+        ' sunday with RPH
+        If cboTicket.Text = "Sunday Only" And cboAccess.Text = "Roleplaying hall" And cboLunch.Text = "Yes" Then
+            amount = 17
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        ElseIf cboTicket.Text = "Sunday Only" And cboAccess.Text = "Roleplaying hall" And cboLunch.Text = "No" Then
+            amount = 12
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        End If
+
+        ' sunday with AAP
+        If cboTicket.Text = "Sunday Only" And cboAccess.Text = "All areas pass" And cboLunch.Text = "Yes" Then
+            amount = 32
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        ElseIf cboTicket.Text = "Sunday Only" And cboAccess.Text = "All areas pass" And cboLunch.Text = "No" Then
+            amount = 27
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        End If
+
+        ' weekend with BGH
+        If cboTicket.Text = "Weekend Pass" And cboAccess.Text = "Board game hall" And cboLunch.Text = "Yes" Then
+            amount = 40
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        ElseIf cboTicket.Text = "Weekend Pass" And cboAccess.Text = "Board game hall" And cboLunch.Text = "No" Then
+            amount = 20
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        End If
+
+        ' weekend pass with RPH
+        If cboTicket.Text = "Weekend Pass" And cboAccess.Text = "Roleplaying hall" And cboLunch.Text = "Yes" Then
+            amount = 39
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        ElseIf cboTicket.Text = "Weekend Pass" And cboAccess.Text = "Roleplaying hall" And cboLunch.Text = "No" Then
+            amount = 29
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        End If
+
+        ' weekend with AAP
+        If cboTicket.Text = "Weekend Pass" And cboAccess.Text = "All areas pass" And cboLunch.Text = "Yes" Then
+            amount = 65
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        ElseIf cboTicket.Text = "Weekend Pass" And cboAccess.Text = "All areas pass" And cboLunch.Text = "No" Then
+            amount = 55
+            tickettype = cboTicket.Text
+            accesstype = cboAccess.Text
+            lunch = cboLunch.Text
+            summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf
+        End If
+
+        ' coding for options
+        If chkFullDay.Checked = True Then
+            options += "Full day Watch the Skies Event" & vbCrLf
+            optiontotal += 30
+            summary = "Option: " & options _
+            & vbCrLf & "Option Cost: $ " & optiontotal
+        End If
+        If chkRoom.Checked = True Then
+            options += "Room 101 Podcast" & vbCrLf
+                optiontotal += 15
+            summary = "Option: " & options _
+            & vbCrLf & "Option Cost: $ " & optiontotal
+        End If
+        If chkTwo.Checked = True Then
+            options += "Two day Board Game" & vbCrLf
+            optiontotal += 50
+            summary = "Option: " & options _
+            & vbCrLf & "Option Cost: $ " & optiontotal
+        End If
+
+        total = amount + optiontotal
+
+        If cboAccess.Text = "All areas pass" And
+            cboTicket.Text = "Weekend Pass" And
+            chkTwo.Checked = True Then
+            summary = "Option: " & options _
+            & vbCrLf & "Option Cost: $ " & optiontotal _
+            & vbCrLf & "Discount: $" & discount
+
+            discount = 25 / 100 * total
+
+        End If
+
+
+        ' display
+        summary = "Ticket Type: " & tickettype & vbCrLf _
+                & vbCrLf & "Access Type: " & accesstype & vbCrLf _
+                & vbCrLf & "Lunch: " & lunch & vbCrLf _
+                & vbCrLf & "Amount: $ " & amount & vbCrLf _
+                & vbCrLf & "Option: " & options _
+                & vbCrLf & "Option Cost: $ " & optiontotal _
+                & vbCrLf & "Total: $" & total _
+                & vbCrLf & "Discount: $" & discount
+        MessageBox.Show(summary)
+
+        cmdDisplay.Enabled = True
+        cmdNext.Enabled = True
+    End Sub
+
+    Private Sub frmTabletop_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        cmdNext.Enabled = False
+    End Sub
+
+    Private Sub cmdClear_Click(sender As Object, e As EventArgs) Handles cmdClear.Click
+        cboTicket.Text = Nothing
+        cboAccess.Text = Nothing
+        cboLunch.Text = Nothing
+        chkFullDay.Checked = Nothing
+        chkRoom.Checked = Nothing
+        chkTwo.Checked = Nothing
+
+
+        cmdNext.Enabled = Nothing
+    End Sub
+
+    Private Sub cmdNext_Click(sender As Object, e As EventArgs) Handles cmdNext.Click
+
+        Dim RESULTS As String
+
+       
+
+        Dim customerdetails = New frmCustomerDetails
+        frmCustomerDetails.Show()
+        Me.Hide()
+
+        MessageBox.Show("Thank you for your patience")
+    End Sub
+End Class
