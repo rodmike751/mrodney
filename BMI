@@ -1,0 +1,62 @@
+Public Class bmiCalculator
+
+    Private Sub calculateButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles calculateButton.Click
+
+        Dim heightSingle, weightSingle, bmiSingle As Single
+        Const bodymassSingle As Single = 703
+
+
+        ' (weight in pounds )
+        ' ----------------------- * 703
+        '    (height in inches²)
+
+
+
+        Try
+            ' Show an error if number is not entered
+            weightSingle = Single.Parse(weightTextBox.Text)
+            Try
+                heightSingle = Single.Parse(heightTextBox.Text)
+
+                bmiSingle = (weightSingle / (heightSingle ^ 2)) * bodymassSingle
+
+                bmiTextBox.Text = bmiSingle.ToString("N")
+
+            Catch weightException As FormatException
+                MessageBox.Show("Must be numeric.", "Data Entry Error.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            End Try
+        Catch heightExcption As FormatException
+            MessageBox.Show("Must be numeric.", "Data Entry Error.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        End Try
+
+
+        Select Case bmiSingle
+            ' Status
+            Case Is >= 30
+                statusTextBox.Text = "Obese"
+            Case 25 To 29.9
+                statusTextBox.Text = "Overweight"
+            Case 18.5 To 24.9
+                statusTextBox.Text = "Normal"
+            Case Else
+                statusTextBox.Text = "Underweight"
+
+        End Select
+
+
+    End Sub
+    Private Sub NewToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewToolStripMenuItem.Click
+        ' Makes a new one
+        heightTextBox.Text = ""
+        weightTextBox.Text = ""
+        bmiTextBox.Text = ""
+        statusTextBox.Text = ""
+    End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
+        ' Close Program
+        Me.Close()
+    End Sub
+
+
+End Class
